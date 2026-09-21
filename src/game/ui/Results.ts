@@ -920,11 +920,25 @@ export class ResultsPanel {
 /**
  * Points to a judges' rating out of ten.
  *
- * Surfing is scored out of ten natively and does not need this. Every other
- * event counts points, so each declares a `par` — the total a strong run
- * reaches — and the panel shows both numbers: the rating on the cards, the
- * real score underneath. Par is a presentation constant and nothing reads it
- * back into gameplay, so tuning it can never change what a run is worth.
+ * Surfing is scored out of ten natively and does not use this. Every other
+ * event counts points, so each declares a `par` — the score an **excellent**
+ * run reaches, the one that earns a 10.
+ *
+ * The curve is a square root, not a straight line, and that is the whole point.
+ * A linear map means the rating is the fraction of a perfect run you managed,
+ * so anything short of mastery reads as a 1 or a 2 and the top half of the
+ * scoreboard is never used. A real panel does not work that way: 5 is
+ * competent, 8-9 is very good, 10 is exceptional. The square root reproduces
+ * that shape — early progress is visible, and the last two points cost as much
+ * as the first eight.
+ *
+ *   score/par   0.04   0.15   0.25   0.50   0.75   1.00
+ *   rating       2.0    3.9    5.0    7.1    8.7   10.0
+ *
+ * This is presentation only. `par` is never read back into gameplay, so tuning
+ * it cannot change what a run is actually worth — only where the cards land.
  */
-export const ratingFor = (score: number, par: number): number =>
-  Math.max(0, Math.min(10, (score / Math.max(1, par)) * 10))
+export const ratingFor = (score: number, par: number): number => {
+  const frac = Math.max(0, score) / Math.max(1, par)
+  return Math.max(0, Math.min(10, 10 * Math.sqrt(frac)))
+}

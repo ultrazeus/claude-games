@@ -71,7 +71,7 @@ type CatchKind = 'none' | 'clean' | 'leaping' | 'diving' | 'scrambling' | 'dropp
 /* --- results screen. `RESULT_PAR` only positions the judges' cards. */
 const RESULT_LABELS = ['DISTANCE', 'ACCURACY', 'CATCHES', 'STYLE'] as const
 const RESULT_COLORS: readonly Hex[] = [0xffd27a, 0x9fd8ff, 0xffe6a8, 0xb9f2c8]
-const RESULT_PAR = 3000
+const RESULT_PAR = 2400
 
 const THROWER_X = -5.4
 const THROWER_Z = 4.5

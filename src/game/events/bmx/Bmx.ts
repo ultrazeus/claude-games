@@ -25,7 +25,7 @@ type RideState = 'ride' | 'air' | 'crash'
 /* --- results screen. `RESULT_PAR` only positions the judges' cards. */
 const RESULT_LABELS = ['AIR', 'SPIN', 'DISTANCE', 'CLEAN'] as const
 const RESULT_COLORS: readonly Hex[] = [0xffd27a, 0x9fd8ff, 0xffe6a8, 0xb9f2c8]
-const RESULT_PAR = 22000
+const RESULT_PAR = 16000
 
 const TAU = Math.PI * 2
 /**

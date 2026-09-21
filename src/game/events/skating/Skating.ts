@@ -42,7 +42,7 @@ const MAX_FALLS = 3
  * reads it back into gameplay. */
 const RESULT_LABELS = ['DISTANCE', 'AIR', 'CHAIN', 'CLEAN'] as const
 const RESULT_COLORS: readonly Hex[] = [0xffd27a, 0x9fd8ff, 0xffe6a8, 0xb9f2c8]
-const RESULT_PAR = 26000
+const RESULT_PAR = 20000
 
 // --- motion ----------------------------------------------------------------
 const MAX_SPEED = 1520

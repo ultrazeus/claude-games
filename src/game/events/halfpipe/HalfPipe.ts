@@ -51,7 +51,7 @@ const MAX_FALLS = 3
  * judges' cards land and is never read back into gameplay. */
 const RESULT_LABELS = ['AIR', 'SPIN', 'SCORE', 'CLEAN'] as const
 const RESULT_COLORS: readonly Hex[] = [0xffd27a, 0x9fd8ff, 0xffe6a8, 0xb9f2c8]
-const RESULT_PAR = 18000
+const RESULT_PAR = 14000
 const RESULT_AIR_MAX = 260
 const RESULT_SPIN_MAX = 720
 

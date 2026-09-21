@@ -1,0 +1,23 @@
+{
+  "name": "california-games",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "California Games (Epyx, 1987) remastered for the browser",
+  "scripts": {
+    "dev": "vite --port 5273 --strictPort",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 5273 --strictPort",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "pixi.js": "^8.6.6"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7"
+  },
+  "allowScripts": {
+    "esbuild@0.25.12": true
+  }
+}

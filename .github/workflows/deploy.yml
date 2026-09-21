@@ -1,0 +1,69 @@
+# Typecheck, build, and publish to GitHub Pages.
+#
+# The build runs on every push and is useful on its own: `npm run build` runs
+# `tsc --noEmit` first, so this is the project's CI.
+#
+# The deploy step is gated on the repository actually being public. Pages is
+# not available for private repositories on the Free plan, and without the
+# guard every push while private would fail at the last step and mail you a
+# red X. With it, nothing changes on the day you flip to public except that
+# the deploy starts happening.
+#
+# One manual step, once, after going public:
+#   Settings -> Pages -> Source: "GitHub Actions"
+# No secrets, no external services.
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Least privilege: the job needs to write Pages and prove its identity, and
+# nothing else in the repository.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deploys race; let a newer push supersede an in-flight one.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      # `npm run build` runs tsc --noEmit first, so a type error fails the
+      # deploy rather than shipping a broken page.
+      - run: npm run build
+        env:
+          BASE_PATH: /${{ github.event.repository.name }}/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    # Skipped (not failed) while the repository is private, and on PRs, which
+    # must never publish. `workflow_dispatch` still forces it if you have Pages
+    # on a paid plan and want it deployed while private.
+    if: >-
+      github.event_name != 'pull_request' &&
+      (github.event.repository.visibility == 'public' ||
+       github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4

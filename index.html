@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>California Games</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@500;600;700&display=swap">
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #0b1020; }
+  body { font: 14px/1.5 Archivo, system-ui, -apple-system, "Segoe UI", sans-serif; color: #fdf8ee; }
+  #app { position: fixed; inset: 0; }
+  #app canvas { display: block; }
+  #boot {
+    position: fixed; inset: 0; display: grid; place-content: center; gap: 14px;
+    justify-items: center; background: #0b1020; z-index: 10;
+    transition: opacity .35s ease; text-align: center;
+  }
+  #boot.gone { opacity: 0; pointer-events: none; }
+  #boot h1 {
+    font-family: Anton, Impact, sans-serif;
+    margin: 0; font-size: clamp(28px, 6vw, 54px); letter-spacing: .14em;
+    font-weight: 800; text-transform: uppercase;
+    background: linear-gradient(180deg, #ffd9a0, #ff4f81 60%, #8a5bb5);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  #boot p { margin: 0; opacity: .6; letter-spacing: .22em; font-size: 11px; text-transform: uppercase; }
+  #boot .bar { width: 180px; height: 2px; background: #2c2740; overflow: hidden; border-radius: 2px; }
+  #boot .bar i { display: block; height: 100%; width: 40%; background: #2fe6d6; animation: slide 1s ease-in-out infinite; }
+  @keyframes slide { 0% { transform: translateX(-110%) } 100% { transform: translateX(260%) } }
+  #fatal { position: fixed; inset: 0; display: none; place-content: center; padding: 24px;
+    background: #16101c; z-index: 20; font: 13px/1.6 ui-monospace, Menlo, monospace; color: #ffb3c4; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+  <div id="app"></div>
+  <div id="boot"><h1>California Games</h1><p>Loading</p><div class="bar"><i></i></div></div>
+  <div id="fatal"></div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

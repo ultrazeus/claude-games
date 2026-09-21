@@ -1,0 +1,29 @@
+# Dependencies and build output
+node_modules/
+dist/
+*.tsbuildinfo
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Local tooling state
+.gstack/
+
+# --- Deliberately not published -------------------------------------------
+# Reference screenshots used while building this: the 1987 original (Epyx) and
+# the two games it was benchmarked against, OlliOlli World (Roll7) and Alto's
+# Odyssey (Snowman). They are other people's copyrighted art and have no
+# business in a public repository, whatever the remake's own status is.
+refs/
+
+# Our own generated frames. Nothing sensitive, just ~54MB of screenshots that
+# would dwarf the source and are reproducible with the scripts in scripts/.
+captures/
+review/
+
+# Python bytecode from the scoring scripts
+__pycache__/
+*.pyc
+venv/

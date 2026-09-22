@@ -1,7 +1,10 @@
 # California Games
 
-A browser remaster of **California Games** (Epyx, 1987) — all six events, built
-with Claude in TypeScript and PixiJS.
+A browser remaster of **California Games** (Epyx, 1987) — all six events,
+written with Claude in TypeScript and PixiJS. It was built with the
+[gauntlet-loop](https://github.com/robonuggets/gauntlet-loop), which loops a
+builder and a separate harsh critic on each piece until it wins a blind
+comparison against a real quality bar.
 
 There are no image files and no audio files. Every shape is drawn as vectors at
 runtime and every sound is synthesised on the fly, which is why the whole game
